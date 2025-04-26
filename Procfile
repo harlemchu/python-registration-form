@@ -1,1 +1,1 @@
-web: uvicorn registration_app:app --host 0.0.0.0 --port ${PORT}
+web: python -m flet.server --port=$PORT registration_app
