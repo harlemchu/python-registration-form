@@ -1,1 +1,1 @@
-web: python -m flet.server --port=$PORT registration_app
+web: python registration_app.py
