@@ -1,16 +1,18 @@
+import flet_fastapi
 import flet as ft
+from fastapi import FastAPI
+
+app = FastAPI()
 
 def main(page: ft.Page):
     page.title = "Registration Form"
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
-    # Create input fields
     name_field = ft.TextField(label="Name")
     email_field = ft.TextField(label="Email")
     password_field = ft.TextField(label="Password", password=True)
 
-    # Define what happens when the user clicks "Register"
     def register_clicked(e):
         name = name_field.value
         email = email_field.value
@@ -22,7 +24,6 @@ def main(page: ft.Page):
             page.update()
             return
         
-        # Successful registration
         page.clean()
         page.add(
             ft.Column(
@@ -34,7 +35,6 @@ def main(page: ft.Page):
             )
         )
 
-    # --- Now ADD the fields and button to the page directly ---
     page.add(
         ft.Column(
             [
@@ -48,4 +48,6 @@ def main(page: ft.Page):
         )
     )
 
-ft.app(target=main, view=ft.WEB_BROWSER)
+# Mount the Flet app into FastAPI
+flet_fastapi.mount(app, "/")
+
